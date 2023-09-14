@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -37,4 +39,7 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "idPedido")
     private Factura factura;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPedido")
+    private List<DetallePedido> detallesPedido = new ArrayList<>();
 }

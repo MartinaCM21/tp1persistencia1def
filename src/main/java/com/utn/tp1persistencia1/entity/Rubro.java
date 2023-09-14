@@ -27,6 +27,6 @@ public class Rubro {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Builder.Default
     @JoinColumn(name = "rubroId")
-    private List<Pedido> pedidos = new ArrayList<>();
+    private List<Producto> productos = new ArrayList<>();
 
 }

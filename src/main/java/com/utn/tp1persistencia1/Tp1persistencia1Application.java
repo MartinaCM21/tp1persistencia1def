@@ -9,7 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import com.utn.tp1persistencia1.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class Tp1persistencia1Application {
@@ -63,34 +65,46 @@ public class Tp1persistencia1Application {
 			DetallePedido detallePedido = DetallePedido.builder()
 					.cantidad(2)
 					.subtotal(300.00)
+					.producto(producto)
 					.build();
 
+			List<DetallePedido> detallesPedidoList = new ArrayList<>();
 
+			detallesPedidoList.add(detallePedido);
 
 			Pedido pedido = Pedido.builder().estado("entregado")
 					.fecha(new Date())
 					.tipoEnvio("delivery")
 					.total(1000.00)
+					.factura(factura)
+					.detallesPedido(detallesPedidoList)
 					.build();
 
+			List<Pedido> pedidoList = new ArrayList<>();
+			pedidoList.add(pedido);
 
+			List<Domicilio> domiciliosList = new ArrayList<>();
+			domiciliosList.add(domicilio);
 
 			Cliente cliente = Cliente.builder().nombre("Taylor")
 							.apellido("Swift")
 					.telefono("26155555")
 					.email("fr@gmail.com")
+					.pedidos(pedidoList)
+					.domicilios(domiciliosList)
 					.build();
+
+			List<Producto> productosList = new ArrayList<>();
+			productosList.add(producto);
 
 			Rubro rubro = Rubro.builder().denominacion("restaurante")
+					.productos(productosList)
 					.build();
 
-			clienteRepository.save(cliente);
-			domicilioRepository.save(domicilio);
-			detallePedidoRepository.save(detallePedido);
-			facturaRepository.save(factura);
-			pedidoRepository.save(pedido);
-			productoRepository.save(producto);
 			rubroRepository.save(rubro);
+			clienteRepository.save(cliente);
+
+
 
 		};
 

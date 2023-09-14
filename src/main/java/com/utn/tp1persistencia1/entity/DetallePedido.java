@@ -26,7 +26,7 @@ public class DetallePedido implements Serializable {
     @Column(name = "subtotal")
     private double subtotal;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn (name = "idProducto")
     private Producto producto;
 }
